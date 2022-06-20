@@ -1,17 +1,20 @@
 #!/usr/bin/python3
-# github.com/rxfa
+#https://github.com/rxfa
 
-from colorama import Fore
+from colorama import Fore, Style
 import sys
 
 app_name = sys.argv[0]
 
 def main():
-    fname_out = input("What will the name of the output file be?")
-    try: 
+    try:
+        fname_out = input("What will the name of the output file be? ") 
         open(fname_out, 'x')
-    except:
-        print(f'{fname_out}')
+    except FileExistsError:
+        print(f"[-] {Fore.RED}{fname_out} could not be created.{Style.RESET_ALL}")
+        main()
+    except KeyboardInterrupt:
+        sys.exit()
 
     def merge(file):
         with open(file, 'r+', encoding='utf8', errors='ignore') as file:
@@ -20,7 +23,7 @@ def main():
                 if line not in fout:
                     fout.write(line)
             fout.close()
-        return (Fore.GREEN + f"[+]{file} merged successfully!")
+        return (f"[+] {Fore.GREEN}{file} merged successfully!{Style.RESET_ALL}")
 
     n = 1
     while n <= (len(sys.argv)-1):
