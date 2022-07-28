@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-# github.com/rxfa
 
-from colorama import Fore
 import sys
 
 app_name = sys.argv[0]
@@ -20,7 +18,7 @@ def main():
                 if line not in fout:
                     fout.write(line)
             fout.close()
-        return (Fore.GREEN + f"[+]{file} merged successfully!")
+        return (f"[+]{file} merged successfully!")
 
     n = 1
     while n <= (len(sys.argv)-1):
