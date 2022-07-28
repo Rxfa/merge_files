@@ -2,15 +2,13 @@
 
 import sys
 
-from colorama import Fore, Style
-
 
 def main():
     try:
-        fname_out = input("What will the name of the output file be? ") 
-        open(fname_out, 'x')
+        fname_out = input("What will the name of the output file be? ")
+        open(fname_out, "x")
     except FileExistsError:
-        print(f"[-] {Fore.RED}{fname_out} could not be created.{Style.RESET_ALL}")
+        print(f"[-] {fname_out} could not be created.")
         main()
     except KeyboardInterrupt:
         sys.exit()
@@ -22,7 +20,7 @@ def main():
                 if line not in fout:
                     fout.write(line)
             fout.close()
-        return (f"[+] {Fore.GREEN}{file} merged successfully!{Style.RESET_ALL}")
+        return f"[+] {file} merged successfully!"
 
     def iterate():
         n = list(x for x in range(1, len(sys.argv)))
